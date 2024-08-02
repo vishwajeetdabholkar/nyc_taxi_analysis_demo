@@ -10,10 +10,10 @@ app = Flask(__name__)
 
 # Database connection parameters
 DB_PARAMS = {
-    'host': 'svc-5dca9fc8-714e-47ab-b2f1-1171a1d7bbcf-dml.aws-virginia-5.svc.singlestore.com',
+    'host': '<host>',
     'port': 3306,
     'user': 'admin',
-    'password': 'SingleStore!3',
+    'password': 'password',
     'database': 'nyc_taxi'
 }
 
