@@ -92,7 +92,12 @@ Open your web browser and navigate to `http://127.0.0.1:5000` to access the appl
 ## Screenshots
 
 ### Home Page
-![Home Page](<img width="1440" alt="image" src="https://github.com/user-attachments/assets/60baeb3c-c931-4e96-b049-e04972d17e29">)
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/fec1f3b8-d6eb-4bbc-8b24-4b49ca9ffec3">
+
+### Some sample results
+<img width="936" alt="image" src="https://github.com/user-attachments/assets/e9f82f70-8dc7-43f0-b888-96417ecf59da">
+<img width="936" alt="image" src="https://github.com/user-attachments/assets/3a5c957a-e486-46be-af90-3d17f876673b">
+
 
 ## Project Structure
 
