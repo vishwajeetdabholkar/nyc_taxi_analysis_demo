@@ -22,6 +22,9 @@ This repository contains a Flask application that provides data analysis capabil
 
 ### Prerequisites
 
+- Download the data from here : NYC Data Set [https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page]
+- Save this parquet file data inside a s3 bucket, and use singlestore Schema and Pipeline Inference to create table and pipeline [https://docs.singlestore.com/cloud/load-data/load-data-with-pipelines/how-to-load-data-using-pipelines/schema-and-pipeline-inference/]
+
 - Python 3.6 or higher
 - Flask
 - pandas
@@ -49,6 +52,25 @@ This repository contains a Flask application that provides data analysis capabil
 
 ### Configuration
 
+Setup the database using below like sytanx:
+the * after NYC_taxi_data is a wildcard to select data from each Months folder.
+```sql
+CREATE INFERRED PIPELINE fhvhv_tripdata_pl AS LOAD DATA S3 's3://bucket/NYC_taxi_data/*/fhvhv_tripdata_2024-*.parquet' 
+ CONFIG '{"region":"us-east-1"}' 
+ CREDENTIALS '{"aws_access_key_id": "", 
+  "aws_secret_access_key": "",
+  "aws_session_token": ""
+  }' 
+  FORMAT PARQUET;
+```
+use below commands to check and verify the tables and pipeline created by INFERRE option:
+```sql
+show tables;
+show pipeline;
+show create table table_name;
+show create pipeline pipeline_name;
+```
+
 Update the `DB_PARAMS` dictionary in `app.py` with your SingleStore database connection parameters.
 
 ### Running the Application
@@ -70,10 +92,7 @@ Open your web browser and navigate to `http://127.0.0.1:5000` to access the appl
 ## Screenshots
 
 ### Home Page
-![Home Page](screenshots/home_page.png)
-
-### Query Results
-![Query Results](screenshots/query_results.png)
+![Home Page](<img width="1440" alt="image" src="https://github.com/user-attachments/assets/60baeb3c-c931-4e96-b049-e04972d17e29">)
 
 ## Project Structure
 
