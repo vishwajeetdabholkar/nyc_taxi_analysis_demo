@@ -106,9 +106,9 @@ queries = {
         SELECT *
         FROM earnings
         WHERE earnings_rank <= FLOOR(0.1 * total_count)
-        LIMIT 50;
+        LIMIT 10;
         """,
-        "explanation": "This analysis identifies the top 10% of taxi rides by total earnings. The query is optimized to use ROW_NUMBER()."
+        "explanation": "This analysis identifies the top 10% of taxi rides by total earnings, considering both fare_amount and tip_amount"
     },
     "Payment Type Dynamics": {
         "query": """
@@ -179,22 +179,26 @@ queries = {
         ORDER BY total_trips DESC
         LIMIT 5;
         """,
-        "explanation": "This query identifies the top 5 busiest hours of the week. It now includes Year and Month, and uses a CASE statement for day names, matching the Polaris query structure."
+        "explanation": "This query identifies the top 5 busiest hours of the week. It now includes Year and Month, and uses a CASE statement for day same."
     },
     "Shortest Path": {
         "query": """
         SELECT 
-            PULocationID, 
-            DOLocationID, 
-            MIN(trip_distance) AS shortest_distance,
-            AVG(trip_distance) AS avg_distance,
-            COUNT(*) AS trip_count
-        FROM yellow_tripdata_pl_new
-        GROUP BY PULocationID, DOLocationID
-        ORDER BY shortest_distance ASC
-        LIMIT 1;
+    PULocationID AS start_location,
+    DOLocationID AS end_location,
+    MIN(trip_distance) AS shortest_distance,
+    AVG(trip_distance) AS avg_distance,
+    COUNT(*) AS trip_count
+    FROM yellow_tripdata_pl_new
+    WHERE 
+        PULocationID = 132 AND 
+        DOLocationID = 10 AND 
+        trip_distance > 0
+    GROUP BY PULocationID, DOLocationID
+    ORDER BY shortest_distance ASC
+    LIMIT 1;
         """,
-        "explanation": "This query finds the shortest path between locations. It remains unchanged as it already matches the Polaris query structure and efficiently solves the business case."
+        "explanation": "This query finds the shortest path between locations."
     }
 }
 
