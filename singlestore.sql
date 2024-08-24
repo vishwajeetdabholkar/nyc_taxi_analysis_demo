@@ -4,7 +4,7 @@ WITH earnings AS (
     SELECT 
         fare_amount + tip_amount AS total_earnings,
         ROW_NUMBER() OVER (ORDER BY fare_amount + tip_amount DESC) AS earnings_rank,
-        COUNT(*) OVER () AS total_count
+        COUNT(*) AS total_count
     FROM yellow_tripdata_pl_new
 )
 SELECT *
